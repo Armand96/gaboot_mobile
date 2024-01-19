@@ -1,0 +1,59 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'product_model.g.dart';
+
+@JsonSerializable()
+class Product {
+  int id;
+  String name;
+  String description;
+  double price;
+  int stock;
+  String dimension;
+  double weight;
+  String weightUnit;
+  int categoryId;
+  // int totalSales;
+  // bool isActive;
+  // DateTime createdAt;
+  // DateTime updatedAt;
+
+  Product({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.stock,
+    required this.dimension,
+    required this.weight,
+    required this.weightUnit,
+    required this.categoryId,
+    // required this.totalSales,
+    // required this.isActive,
+    // required this.createdAt,
+    // required this.updatedAt,
+  });
+
+  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductToJson(this);
+
+}
+
+@JsonSerializable()
+class ResponseAPIProduct {
+  List<Product>? data = [];
+  Product? datum;
+  String message = "";
+  bool success = false;
+
+  ResponseAPIProduct(
+      {this.data,
+      this.datum,
+      required this.message,
+      required this.success});
+
+  factory ResponseAPIProduct.fromJson(Map<String, dynamic> json) => _$ResponseAPIProductFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ResponseAPIProductToJson(this);
+}
