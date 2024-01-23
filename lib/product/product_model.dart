@@ -39,21 +39,3 @@ class Product {
   Map<String, dynamic> toJson() => _$ProductToJson(this);
 
 }
-
-@JsonSerializable()
-class ResponseAPIProduct {
-  List<Product>? data = [];
-  Product? datum;
-  String message = "";
-  bool success = false;
-
-  ResponseAPIProduct(
-      {this.data,
-      this.datum,
-      required this.message,
-      required this.success});
-
-  factory ResponseAPIProduct.fromJson(Map<String, dynamic> json) => _$ResponseAPIProductFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ResponseAPIProductToJson(this);
-}

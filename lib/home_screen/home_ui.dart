@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gaboot_mobile/category/category_model.dart';
+import 'package:gaboot_mobile/category/category_service.dart';
 import 'package:gaboot_mobile/product/product_model.dart';
 import 'package:gaboot_mobile/product/product_service.dart';
 
@@ -10,10 +12,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  void getData() async {
+  void testProduct() async {
     final resp = await ProductService().getProducts();
     if (resp.data != null) {
       for (Product elm in resp.data!) {
+        print(elm.toJson());
+      }
+    }
+  }
+
+  void testCategory() async {
+    final resp = await CategoryService().getCategories();
+    if(resp.data != null) {
+      for (Category elm in resp.data!) {
         print(elm.toJson());
       }
     }
@@ -36,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const Text(
               'Home Screen',
             ),
-            TextButton(onPressed: getData, child: const Text("Test"))
+            TextButton(onPressed: testCategory, child: const Text("Test"))
           ],
         ),
       ),

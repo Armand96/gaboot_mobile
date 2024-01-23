@@ -29,23 +29,3 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'weightUnit': instance.weightUnit,
       'categoryId': instance.categoryId,
     };
-
-ResponseAPIProduct _$ResponseAPIProductFromJson(Map<String, dynamic> json) =>
-    ResponseAPIProduct(
-      data: (json['data'] as List<dynamic>?)
-          ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      datum: json['datum'] == null
-          ? null
-          : Product.fromJson(json['datum'] as Map<String, dynamic>),
-      message: json['message'] as String,
-      success: json['success'] as bool,
-    );
-
-Map<String, dynamic> _$ResponseAPIProductToJson(ResponseAPIProduct instance) =>
-    <String, dynamic>{
-      'data': instance.data,
-      'datum': instance.datum,
-      'message': instance.message,
-      'success': instance.success,
-    };
