@@ -7,23 +7,15 @@ import 'package:gaboot_mobile/services/response.dart';
 class ProductService {
   final String url = "products";
 
-  Future<ResponseAPIProduct> getProducts() async {
-    final response = await Dio().get(Config().baseUrl + url);
-    final data = ResponseAPIProduct.fromJson(response.data);
-    return data;
-  }
-
-  Future<ResponseAPIProduct> getProduct(int id) async {
-    final response = await Dio().get("$Config().baseUrl$url/$id.toString()");
-    final data = ResponseAPIProduct.fromJson(response.data);
-    return data;
-  }
-
-  // MASIH BELOM BISA!!!
-  /* Future<ResponseAPI<Product>> testGetProducts() async {
+  Future<ResponseAPI<Product>> getProducts() async {
     API<Product> api = API<Product>();
-    final response = await api.getAPI(url, (json) => Product.fromJson(json));
+    final response = await api.getAPI(url, (json) => Product.fromJson(json as Map<String, dynamic>));
     return response;
-  } */
-  
+  }
+
+  Future<ResponseAPI<Product>> getProduct(int id) async {
+    API<Product> api = API<Product>();
+    final response = await api.getAPI('$url/$id', (json) => Product.fromJson(json as Map<String, dynamic>));
+    return response;
+  }
 }

@@ -11,9 +11,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   void getData() async {
-    final respz = await ProductService().getProducts();
-    if (respz.data != null) {
-      for (Product elm in respz.data!) {
+    final resp = await ProductService().getProducts();
+    if (resp.data != null) {
+      for (Product elm in resp.data!) {
         print(elm.toJson());
       }
     }

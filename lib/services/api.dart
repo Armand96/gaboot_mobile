@@ -3,11 +3,11 @@ import 'package:gaboot_mobile/services/response.dart';
 import 'package:dio/dio.dart';
 
 class API<T> {
-  Future<ResponseAPI<T>> getAPI(String url, T Function( Object? ) fromJson) async {
+  Future<ResponseAPI<T>> getAPI<T>(String url, T Function(Object? json) fromJson) async {
     print(Config().baseUrl + url);
     final response = await Dio().get(Config().baseUrl + url);
     print("RESPONSE: " + response.toString());
-    final data = ResponseAPI<T>.fromJson(response.data, fromJson);
+    final data = ResponseAPI.fromJson(response.data, fromJson);
     return data;
   }
 

@@ -11,8 +11,9 @@ ResponseAPI<T> _$ResponseAPIFromJson<T>(
   T Function(Object? json) fromJsonT,
 ) =>
     ResponseAPI<T>(
-      data: (json['data'] as List<dynamic>).map(fromJsonT).toList(),
-      datum: fromJsonT(json['datum']),
+      data:
+          (json['data'] as List<dynamic>?)?.map(fromJsonT).toList() ?? const [],
+      datum: _$nullableGenericFromJson(json['datum'], fromJsonT),
       message: json['message'] as String,
       success: json['success'] as bool,
     );
@@ -22,8 +23,20 @@ Map<String, dynamic> _$ResponseAPIToJson<T>(
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{
-      'data': instance.data.map(toJsonT).toList(),
-      'datum': toJsonT(instance.datum),
+      'data': instance.data?.map(toJsonT).toList(),
+      'datum': _$nullableGenericToJson(instance.datum, toJsonT),
       'message': instance.message,
       'success': instance.success,
     };
+
+T? _$nullableGenericFromJson<T>(
+  Object? input,
+  T Function(Object? json) fromJson,
+) =>
+    input == null ? null : fromJson(input);
+
+Object? _$nullableGenericToJson<T>(
+  T? input,
+  Object? Function(T value) toJson,
+) =>
+    input == null ? null : toJson(input);
