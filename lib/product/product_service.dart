@@ -1,7 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:gaboot_mobile/product/product_model.dart';
 import 'package:gaboot_mobile/services/api.dart';
-import 'package:gaboot_mobile/services/config.dart';
 import 'package:gaboot_mobile/services/response.dart';
 
 class ProductService {
