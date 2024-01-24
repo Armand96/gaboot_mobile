@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class GradBtn extends StatelessWidget {
   final Function() cbFunc;
-  const GradBtn({super.key, required this.cbFunc});
+  final String text;
+  const GradBtn({super.key, required this.cbFunc, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class GradBtn extends StatelessWidget {
               textStyle: const TextStyle(fontSize: 20),
             ),
             onPressed: cbFunc,
-            child: const Text('Navigate'),
+            child: Text(text),
           ),
         ],
       ),

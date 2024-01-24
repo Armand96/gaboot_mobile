@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const Text(
               'Home Screen',
             ),
-            GradBtn(cbFunc: navigate)
+            GradBtn(cbFunc: navigate, text: "Navigate",)
           ],
         ),
       ),

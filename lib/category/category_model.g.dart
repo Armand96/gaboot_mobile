@@ -10,8 +10,8 @@ Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       id: json['id'] as int,
       name: json['name'] as String,
       description: json['description'] as String,
-      imgPath: json['imgPath'] as String,
-      imgThumbPath: json['imgThumbPath'] as String,
+      imgPath: json['imgPath'] as String?,
+      imgThumbPath: json['imgThumbPath'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
