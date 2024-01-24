@@ -6,14 +6,18 @@ class ProductService {
   final String url = "products";
 
   Future<ResponseAPI<Product>> getProducts() async {
-    API<Product> api = API<Product>();
-    final response = await api.getAPI(url, (json) => Product.fromJson(json as Map<String, dynamic>));
+    final response = await API().getAPI<Product>(url, (json) => Product.fromJson(json as Map<String, dynamic>));
+    return response;
+  }
+
+  Future<ResponseAPI<Product>> getProductByCategory(int categoryId) async {
+    // final response = await API().getAPI<Product>('$url?categoryId=$categoryId', (json) => Product.fromJson(json as Map<String, dynamic>));
+    final response = await API().getAPI<Product>(url, (json) => Product.fromJson(json as Map<String, dynamic>));
     return response;
   }
 
   Future<ResponseAPI<Product>> getProduct(int id) async {
-    API<Product> api = API<Product>();
-    final response = await api.getAPI('$url/$id', (json) => Product.fromJson(json as Map<String, dynamic>));
+    final response = await API().getAPI<Product>('$url/$id', (json) => Product.fromJson(json as Map<String, dynamic>));
     return response;
   }
 }

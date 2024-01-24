@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gaboot_mobile/category/category_model.dart';
+import 'package:gaboot_mobile/category/category_screen.dart';
 import 'package:gaboot_mobile/category/category_service.dart';
 import 'package:gaboot_mobile/product/product_model.dart';
 import 'package:gaboot_mobile/product/product_service.dart';
+import 'package:gaboot_mobile/ui_collection/gradien_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
   void testProduct() async {
     final resp = await ProductService().getProducts();
     if (resp.data != null) {
@@ -23,11 +26,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void testCategory() async {
     final resp = await CategoryService().getCategories();
-    if(resp.data != null) {
+    if (resp.data != null) {
       for (Category elm in resp.data!) {
         print(elm.toJson());
       }
     }
+  }
+
+  void navigate() {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext cntx) => CategoryScreen(cntx: cntx)));
   }
 
   @override
@@ -47,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const Text(
               'Home Screen',
             ),
-            TextButton(onPressed: testCategory, child: const Text("Test"))
+            GradBtn(cbFunc: navigate)
           ],
         ),
       ),

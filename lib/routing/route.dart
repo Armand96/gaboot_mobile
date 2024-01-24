@@ -5,7 +5,7 @@ class AppRoutes {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       // Add more cases for additional routes
       default:
         return null; // Handle unknown routes here if needed
