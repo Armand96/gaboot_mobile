@@ -1,6 +1,7 @@
 import 'package:gaboot_mobile/services/config.dart';
 import 'package:gaboot_mobile/services/response.dart';
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class API {
   Dio dio = Dio();
@@ -47,9 +48,13 @@ class API {
 
   void headerInterceptor() {
     dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) {
+      onRequest: (options, handler) async {
         // Modify headers or add new headers before sending the request
-        options.headers['Authorization'] = 'Bearer YourAccessToken';
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        // final String token = prefs.getString("jwt");
+        if(prefs.getString("jwt") != null) {
+          options.headers['Authorization'] = 'Bearer $prefs.getString("jwt")';
+        }
 
         // You can also modify other request options if needed
         // options.baseUrl = 'https://api.example.com';

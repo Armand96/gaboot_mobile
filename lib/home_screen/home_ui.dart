@@ -8,6 +8,7 @@ import 'package:gaboot_mobile/product/product_model.dart';
 import 'package:gaboot_mobile/product/product_service.dart';
 import 'package:gaboot_mobile/ui_collection/gradien_appbar.dart';
 import 'package:gaboot_mobile/ui_collection/gradien_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -46,6 +47,12 @@ class _HomeScreenState extends State<HomeScreen> {
     print(response.toString());
   }
 
+  Future<void> testPref() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? data = prefs.getString("jwt");
+    print(data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +64,18 @@ class _HomeScreenState extends State<HomeScreen> {
             const Text(
               'Home Screen',
             ),
-            GradBtn(cbFunc: testLogin, text: "Login",)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GradBtn(cbFunc: testPref, text: "Get Storage",),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GradBtn(cbFunc: testLogin, text: "Login",),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GradBtn(cbFunc: navigate, text: "Navigate",),
+            ),
           ],
         ),
       ),
