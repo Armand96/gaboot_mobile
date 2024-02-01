@@ -6,6 +6,7 @@ import 'package:gaboot_mobile/category/category_screen.dart';
 import 'package:gaboot_mobile/category/category_service.dart';
 import 'package:gaboot_mobile/product/product_model.dart';
 import 'package:gaboot_mobile/product/product_service.dart';
+import 'package:gaboot_mobile/ui_collection/gradien_appbar.dart';
 import 'package:gaboot_mobile/ui_collection/gradien_button.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -48,13 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
-        title: const Text(
-          "Gaboot",
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
+      appBar: const GradientAppBar(title: "Gaboot",),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
