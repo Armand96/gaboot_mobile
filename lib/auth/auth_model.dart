@@ -4,10 +4,11 @@ part 'auth_model.g.dart';
 
 @JsonSerializable()
 class Auth {
-  String username;
-  String password;
+  String message;
+  bool success;
+  String token;
 
-  Auth({required this.username, required this.password});
+  Auth({required this.message, required this.success, required this.token});
 
   factory Auth.fromJson(Map<String, dynamic> json) => _$AuthFromJson(json);
 

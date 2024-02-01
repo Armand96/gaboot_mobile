@@ -2,12 +2,13 @@ import 'package:gaboot_mobile/services/config.dart';
 import 'package:gaboot_mobile/services/response.dart';
 import 'package:dio/dio.dart';
 
-class API{
+class API {
+  Dio dio = Dio();
+
   Future<ResponseAPI<T>> getAPI<T>(String url, T Function(Object? json) fromJson) async {
     try {
-      
       print(Config().baseUrl + url);
-      final response = await Dio().get(Config().baseUrl + url);
+      final response = await dio.get(Config().baseUrl + url);
       print("RESPONSE: " + response.toString());
       final data = ResponseAPI.fromJson(response.data, fromJson);
       return data;
@@ -19,22 +20,51 @@ class API{
 
   Future<ResponseAPI<T>> postAPI<T>(
       String url, Map<String, dynamic> params) async {
-    final response = await Dio().post(Config().baseUrl + url, data: params);
+    final response = await dio.post(Config().baseUrl + url, data: params);
     final data = ResponseAPI<T>.fromJson(response.data, (json) => json as T);
     return data;
   }
 
   Future<ResponseAPI<T>> patchAPI<T>(
       String url, Map<String, dynamic> params) async {
-    final response = await Dio().patch(Config().baseUrl + url, data: params);
+    final response = await dio.patch(Config().baseUrl + url, data: params);
     final data = ResponseAPI<T>.fromJson(response.data, (json) => json as T);
     return data;
   }
 
   Future<ResponseAPI<T>> deleteAPI<T>(String url) async {
-    final response = await Dio().delete(Config().baseUrl + url);
+    final response = await dio.delete(Config().baseUrl + url);
     final data = ResponseAPI<T>.fromJson(response.data, (json) => json as T);
     return data;
+  }
+
+  Future<ResponseAPI2<T>> postAPI2<T>(
+      String url, Map<String, dynamic> params, T Function(Object? json) fromJson) async {
+    final response = await dio.post(Config().baseUrl + url, data: params);
+    final data = ResponseAPI2<T>.fromJson(response.data, fromJson);
+    return data;
+  }
+
+  void headerInterceptor() {
+    dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        // Modify headers or add new headers before sending the request
+        options.headers['Authorization'] = 'Bearer YourAccessToken';
+
+        // You can also modify other request options if needed
+        // options.baseUrl = 'https://api.example.com';
+
+        return handler.next(options); // Pass the modified options to the next interceptor or to the request
+      },
+      onResponse: (response, handler) {
+        // Handle the response or modify it if needed
+        return handler.next(response); // Pass the response to the next interceptor or to the caller
+      },
+      onError: (DioException e, handler) {
+        // Handle errors or modify the error if needed
+        return handler.next(e); // Pass the error to the next interceptor or to the caller
+      },
+    ));
   }
 
   onErrorz(error) {

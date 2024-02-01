@@ -40,3 +40,23 @@ Object? _$nullableGenericToJson<T>(
   Object? Function(T value) toJson,
 ) =>
     input == null ? null : toJson(input);
+
+ResponseAPI2<T> _$ResponseAPI2FromJson<T>(
+  Map<String, dynamic> json,
+  T Function(Object? json) fromJsonT,
+) =>
+    ResponseAPI2<T>(
+      data: _$nullableGenericFromJson(json['data'], fromJsonT),
+      message: json['message'] as String,
+      success: json['success'] as bool,
+    );
+
+Map<String, dynamic> _$ResponseAPI2ToJson<T>(
+  ResponseAPI2<T> instance,
+  Object? Function(T value) toJsonT,
+) =>
+    <String, dynamic>{
+      'data': _$nullableGenericToJson(instance.data, toJsonT),
+      'message': instance.message,
+      'success': instance.success,
+    };

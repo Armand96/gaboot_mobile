@@ -7,11 +7,13 @@ part of 'auth_model.dart';
 // **************************************************************************
 
 Auth _$AuthFromJson(Map<String, dynamic> json) => Auth(
-      username: json['username'] as String,
-      password: json['password'] as String,
+      message: json['message'] as String,
+      success: json['success'] as bool,
+      token: json['token'] as String,
     );
 
 Map<String, dynamic> _$AuthToJson(Auth instance) => <String, dynamic>{
-      'username': instance.username,
-      'password': instance.password,
+      'message': instance.message,
+      'success': instance.success,
+      'token': instance.token,
     };

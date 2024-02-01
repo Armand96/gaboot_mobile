@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gaboot_mobile/auth/auth_dto.dart';
+import 'package:gaboot_mobile/auth/auth_service.dart';
 import 'package:gaboot_mobile/category/category_model.dart';
 import 'package:gaboot_mobile/category/category_screen.dart';
 import 'package:gaboot_mobile/category/category_service.dart';
@@ -37,6 +39,12 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext cntx) => CategoryScreen(cntx: cntx)));
   }
 
+  Future<void> testLogin() async {
+    final dataParam = AuthDTO(password: '123', username: 'elaina023');
+    final response = await CustomerService().login(dataParam);
+    print(response.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const Text(
               'Home Screen',
             ),
-            GradBtn(cbFunc: navigate, text: "Navigate",)
+            GradBtn(cbFunc: testLogin, text: "Login",)
           ],
         ),
       ),
