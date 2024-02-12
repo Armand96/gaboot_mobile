@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:gaboot_mobile/product/product_model.dart';
 import 'package:gaboot_mobile/product/product_screen.dart';
 import 'package:gaboot_mobile/product/product_service.dart';
-import 'package:meta/meta.dart';
 
 /* ================================== STATE ================================== */
 @immutable

@@ -18,7 +18,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
+  int currentPageIndex = 0;
+  List<Widget> screenList = const [
+    Center(child: Text("Index 0"),),
+    Center(child: Text("Index 1"),),
+    Center(child: Text("Index 2"),),
+  ];
+
+  List<PreferredSizeWidget?> appBars = const [
+    GradientAppBar(),
+    null,
+    null
+  ];
+
   void testProduct() async {
     final resp = await ProductService().getProducts();
     if (resp.data != null) {
@@ -38,7 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void navigate() {
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext cntx) => CategoryScreen(cntx: cntx)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext cntx) => CategoryScreen(cntx: cntx)));
   }
 
   Future<void> testLogin() async {
@@ -56,29 +71,75 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GradientAppBar(title: "Gaboot",),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Home Screen',
+      // appBar: const GradientAppBar(),
+      appBar: appBars[currentPageIndex],
+      bottomNavigationBar: botNav(),
+      body: screenList[currentPageIndex],
+    );
+  }
+
+  Widget testing() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Text(
+            'Home Screen',
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GradBtn(
+              cbFunc: testPref,
+              text: "Get Storage",
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GradBtn(cbFunc: testPref, text: "Get Storage",),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GradBtn(
+              cbFunc: testLogin,
+              text: "Login",
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GradBtn(cbFunc: testLogin, text: "Login",),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GradBtn(
+              cbFunc: navigate,
+              text: "Navigate",
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GradBtn(cbFunc: navigate, text: "Navigate",),
-            ),
-          ],
-        ),
+          ),
+          ElevatedButton(onPressed: testPref, child: const Text("Test"))
+        ],
       ),
+    );
+  }
+
+  Widget botNav() {
+    return NavigationBar(
+      onDestinationSelected: (int index) {
+        setState(() {
+          currentPageIndex = index;
+        });
+      },
+      indicatorColor: Colors.amber,
+      selectedIndex: currentPageIndex,
+      destinations: const [
+        NavigationDestination(
+          selectedIcon: Icon(Icons.home),
+          icon: Icon(Icons.home_outlined),
+          label: 'Home',
+        ),
+        NavigationDestination(
+          icon: Badge(child: Icon(Icons.notifications_sharp)),
+          label: 'Notifications',
+        ),
+        NavigationDestination(
+          icon: Badge(
+            label: Text('2'),
+            child: Icon(Icons.messenger_sharp),
+          ),
+          label: 'Messages',
+        ),
+      ],
     );
   }
 }

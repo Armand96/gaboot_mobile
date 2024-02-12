@@ -10,12 +10,12 @@ class API {
     try {
       print(Config().baseUrl + url);
       final response = await dio.get(Config().baseUrl + url);
-      print("RESPONSE: " + response.toString());
+      print("RESPONSE: $response");
       final data = ResponseAPI.fromJson(response.data, fromJson);
       return data;
     } catch (e) {
       print('Error fetching data: $e');
-      throw e;
+      rethrow;
     }
   }
 

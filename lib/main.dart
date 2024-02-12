@@ -22,4 +22,16 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: AppRoutes.generateRoute,
     );
   }
+
+  ThemeData theme() {
+    return ThemeData(
+      // Define your app's theme here
+      primaryColor: Colors.blue,
+      fontFamily: 'Roboto', // Set the default font family
+      textTheme: const TextTheme(
+        titleLarge: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+        bodyMedium: TextStyle(fontSize: 16.0),
+      ),
+    );
+  }
 }

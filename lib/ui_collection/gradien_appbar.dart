@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
 
 class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
 
-  const GradientAppBar({super.key, required this.title});
+  const GradientAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       child: AppBar(
-        title: Text(title, style: const TextStyle(color: Colors.white),),
+        title: TextField(
+          // controller: _searchController,
+          style: const TextStyle(color: Colors.white),
+          cursorColor: Colors.white,
+          decoration: const InputDecoration(
+            hintText: 'Search...',
+            hintStyle: TextStyle(color: Colors.white54),
+            border: InputBorder.none,
+          ),
+          onChanged: (value) {
+            // Perform search functionality here
+          },
+        ),
+        // title: const Text("Gaboot", style: TextStyle(color: Colors.white),),
+        // backgroundColor: Theme.of(context).primaryColor,
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -25,5 +38,5 @@ class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight + 40); // Adjust the height as needed
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 40); // Adjust the height as needed
 }
