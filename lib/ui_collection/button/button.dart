@@ -6,13 +6,15 @@ class Button extends StatelessWidget {
   final bool enabled;
   final bool fullWidth;
   final bool isOutline;
+  final Function() funcs;
   const Button(
       {super.key,
       this.btnColor,
       required this.enabled,
       required this.fullWidth,
       required this.text,
-      required this.isOutline});
+      required this.isOutline,
+      required this.funcs});
 
   Color? appBtnColor() {
     if (enabled) {
@@ -75,7 +77,7 @@ class Button extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            onPressed: !enabled ? null : () {},
+            onPressed: enabled ? funcs : null,
             child: Text(text),
           ),
         ],
