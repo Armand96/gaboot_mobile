@@ -11,6 +11,11 @@ class CustomerService {
     return response;
   }
 
+  Future<ResponseAPI<Customer>> update(int id, Customer param) async {
+    final response = await API().patchAPI<Customer>('$url/$id', param.toJson());
+    return response;
+  }
+
   Future<ResponseAPI<Customer>> getProfile(int customerId) async {
     // final response = await API().getAPI<Product>('$url?categoryId=$categoryId', (json) => Product.fromJson(json as Map<String, dynamic>));
     final response = await API().getAPI<Customer>(
