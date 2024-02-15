@@ -6,6 +6,7 @@ import 'package:gaboot_mobile/category/category_screen.dart';
 import 'package:gaboot_mobile/category/category_service.dart';
 import 'package:gaboot_mobile/product/product_model.dart';
 import 'package:gaboot_mobile/product/product_service.dart';
+import 'package:gaboot_mobile/testscreen/testscreen.dart';
 import 'package:gaboot_mobile/ui_collection/gradien_appbar.dart';
 import 'package:gaboot_mobile/ui_collection/gradien_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,7 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> screenList = const [
     Center(child: Text("Index 0"),),
     Center(child: Text("Index 1"),),
-    Center(child: Text("Index 2"),),
+    // Center(child: Text("Index 2"),),
+    TestScreen()
   ];
 
   List<PreferredSizeWidget?> appBars = const [
