@@ -25,6 +25,14 @@ class CustomerService {
     return response;
   }
 
+  Future<ResponseAPI<Customer>> updateImage(
+      int customerId, CustomerDTO param) async {
+    // final response = await API().getAPI<Product>('$url?categoryId=$categoryId', (json) => Product.fromJson(json as Map<String, dynamic>));
+    final response = await API()
+        .patchAPI<Customer>('$url/$image/$customerId', param.toJson());
+    return response;
+  }
+
   Future<ResponseAPI<Customer>> getProfile(int customerId) async {
     // final response = await API().getAPI<Product>('$url?categoryId=$categoryId', (json) => Product.fromJson(json as Map<String, dynamic>));
     final response = await API().getAPI<Customer>('$url/$profile/$customerId',
