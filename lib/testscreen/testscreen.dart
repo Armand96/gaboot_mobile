@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gaboot_mobile/ui_collection/button/button.dart';
+import 'package:gaboot_mobile/ui_collection/button/google_button.dart';
 
 class TestScreen extends StatelessWidget {
   const TestScreen({super.key});
@@ -29,6 +30,10 @@ class TestScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
             child: Button(btnColor: "primary", enabled: true, fullWidth: true, text: "Tombol", isOutline: true, funcs: test),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+            child: GButton(fullWidth: true, funcs: test, text: "Masuk dengan akun Google Anda", )
           ),
         ],
       ),
