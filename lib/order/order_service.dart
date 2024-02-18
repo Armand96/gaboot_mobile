@@ -10,6 +10,11 @@ class CategoryService {
     return response;
   }
 
+  Future<ResponseAPI<Order>> update(int id, Order param) async {
+    final response = await API().patchAPI<Order>('$url/$id', param.toJson());
+    return response;
+  }
+
   Future<ResponseAPI<Order>> getOrders() async {
     final response = await API().getAPI<Order>(
         url, (json) => Order.fromJson(json as Map<String, dynamic>));
