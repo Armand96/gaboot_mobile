@@ -32,7 +32,20 @@ class GButton extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 textStyle: const TextStyle(fontSize: 20)),
             onPressed: funcs,
-            child: Wrap(children: [Text(text)]),
+            child: Wrap(children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 12.0, top: 0),
+                child: Image.asset(
+                  'asset/images/google.png',
+                  width: 30,
+                  height: 30,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 2.0),
+                child: Text(text),
+              )
+            ]),
           ),
         ],
       ),
