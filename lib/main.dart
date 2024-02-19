@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   ThemeData theme() {
     return ThemeData(
       // Define your app's theme here
-      primaryColor: Colors.blue,
+      primaryColor: const Color(0x009E00E8),
       fontFamily: 'Roboto', // Set the default font family
       textTheme: const TextTheme(
         titleLarge: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),

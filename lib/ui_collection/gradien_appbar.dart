@@ -23,15 +23,9 @@ class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
           },
         ),
         // title: const Text("Gaboot", style: TextStyle(color: Colors.white),),
-        // backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
         flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color.fromARGB(255, 228, 21, 159), Color.fromARGB(255, 84, 45, 212)], // Replace with your gradient colors
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
+          decoration: const BoxDecoration(),
         ),
       ),
     );
