@@ -9,4 +9,9 @@ class CategoryService {
     final response = await API().postAPI<Payment>(url, param.toJson());
     return response;
   }
+
+  Future<ResponseAPI<Payment>> getTransaction(int id) async {
+    final response = await API().getAPI<Payment>('$url/$id');
+    return response;
+  }
 }
