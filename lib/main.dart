@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gaboot_mobile/routing/route.dart';
+import 'package:gaboot_mobile/ui_collection/color_system.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +27,7 @@ class _MyAppState extends State<MyApp> {
   ThemeData theme() {
     return ThemeData(
       // Define your app's theme here
-      primaryColor: const Color(0x009E00E8),
+      primaryColor: ColSys().primary,
       fontFamily: 'Roboto', // Set the default font family
       textTheme: const TextTheme(
         titleLarge: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
