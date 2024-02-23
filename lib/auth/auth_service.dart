@@ -4,7 +4,7 @@ import 'package:gaboot_mobile/services/api.dart';
 import 'package:gaboot_mobile/services/response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CustomerService {
+class AuthService {
   final String url = "auth";
   final String lgn = "login";
   
