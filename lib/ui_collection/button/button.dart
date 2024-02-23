@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gaboot_mobile/ui_collection/color_system.dart';
 
 class Button extends StatelessWidget {
   final String? btnColor;
@@ -7,7 +8,9 @@ class Button extends StatelessWidget {
   final bool fullWidth;
   final bool isOutline;
   final Function() funcs;
-  const Button(
+  final ColSys colsys = ColSys();
+
+  Button(
       {super.key,
       this.btnColor,
       required this.enabled,
@@ -16,47 +19,47 @@ class Button extends StatelessWidget {
       required this.isOutline,
       required this.funcs});
 
-  Color? appBtnColor() {
+  Color? appBtnColor(BuildContext context) {
     if (enabled) {
       switch (btnColor) {
         case "primary":
-          return Colors.purple;
+          return colsys.primary;
         case "success":
-          return Colors.green;
+          return colsys.success;
         case "info":
-          return Colors.blue;
+          return colsys.info;
         case "warning":
-          return Colors.yellow;
+          return colsys.warning;
         case "danger":
-          return Colors.red;
+          return colsys.danger;
         case "dark":
           return Colors.black87;
         default:
-          return Colors.purple;
+          return colsys.primary;
       }
     } else {
       switch (btnColor) {
         case "primary":
-          return Colors.purple[100];
+          return colsys.primaryDisabled;
         case "success":
-          return Colors.green[100];
+          return colsys.successDisabled;
         case "info":
-          return Colors.blue[100];
+          return colsys.infoDisabled;
         case "warning":
-          return Colors.yellow[100];
+          return colsys.warningDisabled;
         case "danger":
-          return Colors.red[100];
+          return colsys.dangerDisabled;
         case "dark":
           return Colors.black26;
         default:
-          return Colors.purple[100];
+          return colsys.primaryDisabled;
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    Color? colors = appBtnColor();
+    Color? colors = appBtnColor(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(4),
       child: Stack(
@@ -64,10 +67,10 @@ class Button extends StatelessWidget {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                color: isOutline ? null : colors,
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                border: !isOutline ? null : Border.all(color: colors!, width: 2)
-              ),
+                  color: isOutline ? null : colors,
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  border:
+                      !isOutline ? null : Border.all(color: colors!, width: 2)),
             ),
           ),
           TextButton(
@@ -75,7 +78,8 @@ class Button extends StatelessWidget {
               minimumSize: fullWidth ? const Size.fromHeight(50) : null,
               foregroundColor: isOutline ? colors : Colors.white,
               padding: const EdgeInsets.all(16.0),
-              textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              textStyle:
+                  const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             onPressed: enabled ? funcs : null,
             child: Text(text),
