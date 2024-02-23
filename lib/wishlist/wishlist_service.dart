@@ -11,17 +11,17 @@ class WishlistService {
   }
 
   Future<ResponseAPI<Wishlist>> getWishlists() async {
-    final response = await API().getAPI<Wishlist>(url);
+    final response = await API().getAPI<Wishlist>(url, (json) => Wishlist.fromJson(json as Map<String, dynamic>));
     return response;
   }
 
   Future<ResponseAPI<Wishlist>> getWishlist(int id) async {
-    final response = await API().getAPI<Wishlist>('$url/$id');
+    final response = await API().getAPI<Wishlist>('$url/$id', (json) => Wishlist.fromJson(json as Map<String, dynamic>));
     return response;
   }
 
   Future<ResponseAPI<Wishlist>> update(int id, Wishlist param) async {
-    final response = await API().pacthAPI<Wishlist>('$url/$id', param.toJson());
+    final response = await API().patchAPI<Wishlist>('$url/$id', param.toJson());
     return response;
   }
 

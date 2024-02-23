@@ -1,3 +1,4 @@
+import 'package:gaboot_mobile/auth/auth_dto.dart';
 import 'package:gaboot_mobile/customer/customer_dto.dart';
 import 'package:gaboot_mobile/customer/customer_model.dart';
 import 'package:gaboot_mobile/services/api.dart';
@@ -9,7 +10,7 @@ class CustomerService {
   final String thumbnail = "thumbnail";
   final String profile = "profile";
 
-  Future<ResponseAPI<Customer>> login() async {
+  Future<ResponseAPI<Customer>> login(AuthDTO loginParam) async {
     final response = await API().getAPI<Customer>(
         url, (json) => Customer.fromJson(json as Map<String, dynamic>));
     return response;

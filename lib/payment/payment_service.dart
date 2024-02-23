@@ -11,7 +11,7 @@ class PaymentService {
   }
 
   Future<ResponseAPI<Payment>> getTransaction(int id) async {
-    final response = await API().getAPI<Payment>('$url/$id');
+    final response = await API().getAPI<Payment>('$url/$id', (json) => Payment.fromJson(json as Map<String, dynamic>));
     return response;
   }
 }
