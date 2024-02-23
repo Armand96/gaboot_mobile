@@ -2,7 +2,7 @@ import 'package:gaboot_mobile/payment/payment_model.dart';
 import 'package:gaboot_mobile/services/api.dart';
 import 'package:gaboot_mobile/services/response.dart';
 
-class CategoryService {
+class PaymentService {
   final String url = "payment";
 
   Future<ResponseAPI<Payment>> create(Payment param) async {

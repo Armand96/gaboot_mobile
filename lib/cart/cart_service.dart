@@ -2,7 +2,7 @@ import 'package:gaboot_mobile/cart/cart_model.dart';
 import 'package:gaboot_mobile/services/api.dart';
 import 'package:gaboot_mobile/services/response.dart';
 
-class CategoryService {
+class CartService {
   final String url = "cart";
 
   Future<ResponseAPI<Cart>> create(Cart param) async {

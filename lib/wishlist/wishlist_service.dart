@@ -2,7 +2,7 @@ import 'package:gaboot_mobile/wishlist/wishlist_model.dart';
 import 'package:gaboot_mobile/services/api.dart';
 import 'package:gaboot_mobile/services/response.dart';
 
-class CategoryService {
+class WishlistService {
   final String url = "wishlist";
 
   Future<ResponseAPI<Wishlist>> create(Wishlist param) async {

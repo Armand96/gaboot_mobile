@@ -2,7 +2,7 @@ import 'package:gaboot_mobile/order/order_model.dart';
 import 'package:gaboot_mobile/services/api.dart';
 import 'package:gaboot_mobile/services/response.dart';
 
-class CategoryService {
+class OrderService {
   final String url = "order";
 
   Future<ResponseAPI<Order>> create(Order param) async {
