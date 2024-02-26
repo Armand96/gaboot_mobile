@@ -36,6 +36,7 @@ dependencies:
   bloc: ^8.1.2
   json_annotation: ^4.8.1
   carousel_slider: ^4.2.1
+  flutter_rating_bar:
 
 
   # The following adds the Cupertino Icons font to your application.

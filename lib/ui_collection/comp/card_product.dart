@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gaboot_mobile/func_collection/format_text.dart';
 
 class CardProduct extends StatelessWidget {
   final String title;
   final double price;
-  const CardProduct({super.key, required this.title, required this.price});
+  final double rating;
+  final String thumbnailImgPath = 'asset/images/noimage.png';
+  const CardProduct(
+      {super.key,
+      required this.title,
+      required this.price,
+      required this.rating});
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +28,11 @@ class CardProduct extends StatelessWidget {
               height: 200,
               width: double.infinity,
               alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
                 image: DecorationImage(
                   fit: BoxFit.fill,
-                  image: AssetImage('asset/images/noimage.png'),
+                  image: AssetImage(thumbnailImgPath),
                   // image: NetworkImage(Config().baseUrlImage + categoryModel.link),
                 ),
               ),
@@ -42,18 +49,13 @@ class CardProduct extends StatelessWidget {
                   Text(
                     priceTxt,
                     textAlign: TextAlign.start,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   Row(
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     // mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(Icons.star, color: Colors.yellow[800]),
-                      Icon(Icons.star, color: Colors.yellow[800]),
-                      Icon(Icons.star, color: Colors.yellow[800]),
-                      Icon(Icons.star, color: Colors.yellow[800]),
-                      Icon(Icons.star, color: Colors.yellow[800]),
-                    ],
+                    children: [starRating()],
                   ),
                 ],
               ),
@@ -61,6 +63,24 @@ class CardProduct extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  Widget starRating() {
+    return RatingBar.builder(
+      allowHalfRating: true,
+      ignoreGestures: true,
+      itemSize: 24,
+      initialRating: rating,
+      minRating: 0,
+      maxRating: 5,
+      direction: Axis.horizontal,
+      itemCount: 5,
+      itemBuilder: (context, _) => Icon(
+        Icons.star,
+        color: Colors.yellow[800],
+      ),
+      onRatingUpdate: (rating) {},
     );
   }
 }

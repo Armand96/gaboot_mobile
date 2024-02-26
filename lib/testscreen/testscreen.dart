@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gaboot_mobile/ui_collection/button/button.dart';
 import 'package:gaboot_mobile/ui_collection/button/google_button.dart';
-import 'package:gaboot_mobile/ui_collection/comp/card.dart';
+import 'package:gaboot_mobile/ui_collection/comp/card_product.dart';
 import 'package:gaboot_mobile/ui_collection/form/search_form.dart';
 import 'package:gaboot_mobile/ui_collection/loading/linear_loading.dart';
 
@@ -49,6 +49,7 @@ class _TestScreenState extends State<TestScreen> with TickerProviderStateMixin {
               child: CardProduct(
                 title: "Laptop",
                 price: 10000000,
+                rating: 2,
               ),
             );
           },

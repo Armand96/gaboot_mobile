@@ -9,6 +9,7 @@ import 'package:gaboot_mobile/product/product_model.dart';
 import 'package:gaboot_mobile/product/product_service.dart';
 import 'package:gaboot_mobile/testscreen/testscreen.dart';
 import 'package:gaboot_mobile/ui_collection/color_system.dart';
+import 'package:gaboot_mobile/ui_collection/comp/bottom_nav_bar.dart';
 import 'package:gaboot_mobile/ui_collection/gradien_appbar.dart';
 import 'package:gaboot_mobile/ui_collection/gradien_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,11 +30,43 @@ class _HomeScreenState extends State<HomeScreen> {
     Center(
       child: Text("Index 1"),
     ),
-    Center(child: Text("Index 2"),),
+    Center(
+      child: Text("Index 2"),
+    ),
     TestScreen()
   ];
 
-  List<PreferredSizeWidget?> appBars = const [GradientAppBar(), null, null, null];
+  List<BottomNavigationBarItem> listItem = const [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home_outlined),
+      label: 'Home',
+    ),
+    BottomNavigationBarItem(
+      icon: Badge(child: Icon(Icons.notifications_outlined)),
+      label: 'Notifications',
+    ),
+    BottomNavigationBarItem(
+      icon: Badge(
+        label: Text('2'),
+        child: Icon(Icons.messenger_outline),
+      ),
+      label: 'Messages',
+    ),
+    BottomNavigationBarItem(icon: Icon(Icons.school_outlined), label: "Test")
+  ];
+
+  List<PreferredSizeWidget?> appBars = const [
+    GradientAppBar(),
+    null,
+    null,
+    null
+  ];
+
+  void changeScreen(int index){
+    setState(() {
+      currentPageIndex = index;
+    });
+  }
 
   void testProduct() async {
     final resp = await ProductService().getProducts();
@@ -77,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       // appBar: const GradientAppBar(),
       appBar: appBars[currentPageIndex],
-      bottomNavigationBar: anotherBotNav(),
+      bottomNavigationBar: BottomNavbar(listIcon: listItem, onTap: changeScreen, currentPageIndex: currentPageIndex,),
       body: screenList[currentPageIndex],
     );
   }
@@ -119,35 +152,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget anotherBotNav() {
     return BottomNavigationBar(
-      onTap: (int index) {
-        setState(() {
-          currentPageIndex = index;
-        });
-      },
+      onTap: changeScreen,
       type: BottomNavigationBarType.fixed,
       iconSize: 28,
       selectedItemColor: Colors.black,
       unselectedItemColor: Colors.white,
       currentIndex: currentPageIndex,
       backgroundColor: ColSys().primary,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home_outlined),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Badge(child: Icon(Icons.notifications_outlined)),
-          label: 'Notifications',
-        ),
-        BottomNavigationBarItem(
-          icon: Badge(
-            label: Text('2'),
-            child: Icon(Icons.messenger_outline),
-          ),
-          label: 'Messages',
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.school_outlined), label: "Test")
-      ],
+      items: listItem,
     );
   }
 
