@@ -3,7 +3,8 @@ import 'package:gaboot_mobile/ui_collection/color_system.dart';
 
 class LinearLoading extends StatefulWidget {
   final AnimationController ctrl;
-  const LinearLoading({super.key, required this.ctrl});
+  final double ?height;
+  const LinearLoading({super.key, required this.ctrl, this.height});
 
   @override
   // ignore: no_logic_in_create_state
@@ -47,7 +48,7 @@ class _LinearLoadingState extends State<LinearLoading>
             value: controller.value,
             semanticsLabel: 'Linear progress indicator',
             color: ColSys().primary,
-            minHeight: 50,
+            minHeight: widget.height != null ? widget.height : 10,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
           ),
         ],
