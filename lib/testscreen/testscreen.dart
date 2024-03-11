@@ -34,6 +34,10 @@ class _TestScreenState extends State<TestScreen> with TickerProviderStateMixin {
     ctrler.value += .02;
   }
 
+  void navigate(){
+    Navigator.pushNamed(context, '/login');
+  }
+
   @override
   Widget build(BuildContext context) {
     // return CustomScrollView(
@@ -106,7 +110,8 @@ class _TestScreenState extends State<TestScreen> with TickerProviderStateMixin {
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
             child: InputForm( isFormField: false, hintText: "Masukkan username", iconPrefix: const Icon(Icons.access_alarm), txtCtrl: txtCtrl,),
-          )
+          ),
+          Padding(padding: const EdgeInsets.all(10), child: Button(enabled: true,fullWidth: false, isOutline: false, text: "Test Screen",funcs: navigate,),)
         ],
       ),
     );
