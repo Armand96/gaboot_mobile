@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gaboot_mobile/screen/login/login_screen2.dart';
+import 'package:gaboot_mobile/screen/signup/signup_screen.dart';
 import 'package:gaboot_mobile/ui_collection/button/button.dart';
 
 class LoginScreen1 extends StatelessWidget {
@@ -34,7 +35,7 @@ class LoginScreen1 extends StatelessWidget {
   void navigateToDaftar(BuildContext ctx) {
     Navigator.push(
       ctx,
-      MaterialPageRoute(builder: (context) => const LoginScreen2()),
+      MaterialPageRoute(builder: (context) => const SignUpScreen()),
     );
   }
   // ==============================================================
@@ -47,7 +48,7 @@ class LoginScreen1 extends StatelessWidget {
           fullWidth: true,
           text: "Daftar",
           isOutline: true,
-          funcs: (){navigateToLogin(ctx);}),
+          funcs: (){navigateToDaftar(ctx);}),
     );
   }
 
