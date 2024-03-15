@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gaboot_mobile/home_screen/home_ui.dart';
-import 'package:gaboot_mobile/screen/login/login_screen1.dart';
+import 'package:gaboot_mobile/screen/welcome/welcome_screen.dart';
 
 class AppRoutes {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
