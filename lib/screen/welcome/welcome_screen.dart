@@ -3,8 +3,8 @@ import 'package:gaboot_mobile/screen/login/login_screen.dart';
 import 'package:gaboot_mobile/screen/signup/signup_screen.dart';
 import 'package:gaboot_mobile/ui_collection/button/button.dart';
 
-class LoginScreen1 extends StatelessWidget {
-  const LoginScreen1({super.key});
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class LoginScreen1 extends StatelessWidget {
   void navigateToLogin(BuildContext ctx) {
     Navigator.push(
       ctx,
-      MaterialPageRoute(builder: (context) => const LoginScreen2()),
+      MaterialPageRoute(builder: (context) => const LoginScreen()),
     );
   }
 

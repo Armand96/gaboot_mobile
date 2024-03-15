@@ -3,14 +3,14 @@ import 'package:gaboot_mobile/ui_collection/button/button.dart';
 import 'package:gaboot_mobile/ui_collection/button/google_button.dart';
 import 'package:gaboot_mobile/ui_collection/form/text_form.dart';
 
-class LoginScreen2 extends StatefulWidget {
-  const LoginScreen2({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<LoginScreen2> createState() => _LoginScreen2State();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreen2State extends State<LoginScreen2> {
+class _LoginScreenState extends State<LoginScreen> {
   bool rememberMe = false;
   TextEditingController txtUsername = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
