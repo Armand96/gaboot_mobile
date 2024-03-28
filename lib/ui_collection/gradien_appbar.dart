@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gaboot_mobile/ui_collection/color_system.dart';
 
 class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
 
@@ -23,7 +24,7 @@ class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
           },
         ),
         // title: const Text("Gaboot", style: TextStyle(color: Colors.white),),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: ColSys().primary,
         flexibleSpace: Container(
           decoration: const BoxDecoration(),
         ),
