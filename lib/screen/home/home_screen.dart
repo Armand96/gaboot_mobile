@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gaboot_mobile/screen/home/homebase/homebase_screen.dart';
 import 'package:gaboot_mobile/ui_collection/color_system.dart';
 // import 'package:gaboot_mobile/ui_collection/button/button.dart';
 // import 'package:gaboot_mobile/ui_collection/color_system.dart';
 import 'package:gaboot_mobile/ui_collection/comp/bottom_nav_bar.dart';
 // import 'package:gaboot_mobile/ui_collection/form/text_form.dart';
-import 'package:gaboot_mobile/ui_collection/gradien_appbar.dart';
+// import 'package:gaboot_mobile/ui_collection/gradien_appbar.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -16,9 +17,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int currentPageIndex = 0;
   List<Widget> screenList = const [
-    Center(
-      child: Text("Index 0"),
-    ),
+    HomeBaseScreen(),
     Center(
       child: Text("Index 1"),
     ),
@@ -36,21 +35,22 @@ class _MainScreenState extends State<MainScreen> {
       label: 'Home',
     ),
     BottomNavigationBarItem(
-      icon: Badge(child: Icon(Icons.notifications_outlined)),
-      label: 'Notifications',
+      icon: Icon(Icons.shopping_cart),
+      label: 'Cart',
     ),
     BottomNavigationBarItem(
       icon: Badge(
         label: Text('2'),
-        child: Icon(Icons.messenger_outline),
+        child: Icon(Icons.description_outlined),
       ),
-      label: 'Messages',
+      label: 'Orders',
     ),
-    BottomNavigationBarItem(icon: Icon(Icons.school_outlined), label: "Test")
+    BottomNavigationBarItem(icon: Icon(Icons.settings_outlined), label: "Settings")
   ];
 
-  List<PreferredSizeWidget?> appBars = const [
-    GradientAppBar(),
+  List<PreferredSizeWidget?> appBars = [
+    // GradientAppBar(),
+    null,
     null,
     null,
     null
@@ -64,6 +64,14 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    appBars = [
+      // GradientAppBar(),
+      appBar(),
+      null,
+      null,
+      null
+    ];
+
     return Scaffold(
       // appBar: const GradientAppBar(),
       appBar: appBars[currentPageIndex],
@@ -76,4 +84,32 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  PreferredSizeWidget? appBar() {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(kToolbarHeight + 40),
+      child: Container(
+        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+        child: AppBar(
+          title: TextField(
+            // controller: _searchController,
+            style: const TextStyle(color: Colors.white),
+            cursorColor: Colors.white,
+            decoration: const InputDecoration(
+              hintText: 'Cari barang yang kamu inginkan...',
+              hintStyle: TextStyle(color: Colors.white54),
+              border: InputBorder.none,
+            ),
+            onChanged: (value) {
+              // Perform search functionality here
+            },
+          ),
+          // title: const Text("Gaboot", style: TextStyle(color: Colors.white),),
+          backgroundColor: ColSys().primary,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(),
+          ),
+        ),
+      ),
+    );
+  }
 }
