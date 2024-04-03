@@ -1,31 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:gaboot_mobile/ui_collection/button/button.dart';
+import 'package:gaboot_mobile/ui_collection/color_system.dart';
+// import 'package:gaboot_mobile/ui_collection/gradien_appbar.dart';
 
-class HomeBaseScreen extends StatefulWidget {
-  const HomeBaseScreen({super.key});
+class CustScrollView extends StatefulWidget {
+  const CustScrollView({super.key});
 
   @override
-  State<HomeBaseScreen> createState() => _HomeBaseScreenState();
+  State<CustScrollView> createState() => _CustScrollViewState();
 }
 
-class _HomeBaseScreenState extends State<HomeBaseScreen> {
+class _CustScrollViewState extends State<CustScrollView> {
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
+
+  Future<void> _refresh() async {
+    // Simulate a network request or any async operation
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() {
+      print("updated");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(5, 10, 5, 2),
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        // mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          topBanner(),
-          Flexible(child: filter(), flex: 0),
-          Flexible(child: listProduct()),
-        ],
+    return SafeArea(
+      child: RefreshIndicator(
+        key: _refreshIndicatorKey,
+        onRefresh: _refresh,
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              floating: true,
+              flexibleSpace: appBar(),
+              expandedHeight: 70,
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate.fixed([
+                Container(
+                  padding: const EdgeInsets.fromLTRB(5, 10, 5, 2),
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      topBanner(),
+                      Flexible(child: filter(), flex: 0),
+                      // Expanded(child: listProduct(), flex: 0),
+                    ],
+                  ),
+                )
+              ]),
+            ),
+          ],
+        ),
       ),
     );
   }
 
+  /*  */
   filter() {
     const String textFilter = "Filter";
     return Padding(
@@ -117,6 +150,32 @@ class _HomeBaseScreenState extends State<HomeBaseScreen> {
           fit: BoxFit.fill,
           image: AssetImage('asset/images/noimage.png'),
           // image: NetworkImage(Config().baseUrlImage + categoryModel.link),
+        ),
+      ),
+    );
+  }
+
+  /* APP BAR */
+  PreferredSizeWidget? appBar() {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(kToolbarHeight + 40),
+      child: Container(
+        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+        child: AppBar(
+          title: TextField(
+            style: const TextStyle(color: Colors.white),
+            cursorColor: Colors.white,
+            decoration: const InputDecoration(
+              hintText: 'Cari barang yang kamu inginkan...',
+              hintStyle: TextStyle(color: Colors.white54),
+              border: InputBorder.none,
+            ),
+            onChanged: (value) {},
+          ),
+          backgroundColor: ColSys().primary,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(),
+          ),
         ),
       ),
     );

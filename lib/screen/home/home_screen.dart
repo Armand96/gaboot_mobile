@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gaboot_mobile/screen/home/homebase/homebase_screen.dart';
+import 'package:gaboot_mobile/testscreen/custscrollview.dart';
+// import 'package:gaboot_mobile/testscreen/sliverappbar.dart';
 import 'package:gaboot_mobile/ui_collection/color_system.dart';
 // import 'package:gaboot_mobile/ui_collection/button/button.dart';
 // import 'package:gaboot_mobile/ui_collection/color_system.dart';
@@ -18,9 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   int currentPageIndex = 0;
   List<Widget> screenList = const [
     HomeBaseScreen(),
-    Center(
-      child: Text("Index 1"),
-    ),
+    CustScrollView(),
     Center(
       child: Text("Index 2"),
     ),
