@@ -35,22 +35,14 @@ class _CustScrollViewState extends State<CustScrollView> {
               flexibleSpace: appBar(),
               expandedHeight: 70,
             ),
-            SliverList(
-              delegate: SliverChildListDelegate.fixed([
-                Container(
-                  padding: const EdgeInsets.fromLTRB(5, 10, 5, 2),
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      topBanner(),
-                      Flexible(child: filter(), flex: 0),
-                      // Expanded(child: listProduct(), flex: 0),
-                    ],
-                  ),
-                )
-              ]),
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  topBanner(),
+                  filter(),
+                  listProduct()
+                ],
+              ),
             ),
           ],
         ),
@@ -106,36 +98,39 @@ class _CustScrollViewState extends State<CustScrollView> {
   }
 
   listProduct() {
-    List<int> data = [1, 2, 3, 4, 5];
-    return GridView.count(
-      crossAxisCount: 2,
-      children: List.generate(data.length, (index) {
-        return Center(
-          child: GestureDetector(
-            onTap: () {
-              print('test click');
-            },
-            child: Column(
-              children: [
-                Container(
-                  height: 150,
-                  width: 150,
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('asset/images/noimage.png'),
-                      // image: NetworkImage(Config().baseUrlImage + categoryModel.link),
+    List<int> data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .8,
+      child: GridView.count(
+        crossAxisCount: 2,
+        children: List.generate(data.length, (index) {
+          return Center(
+            child: GestureDetector(
+              onTap: () {
+                print('test click');
+              },
+              child: Column(
+                children: [
+                  Container(
+                    height: 150,
+                    width: 150,
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage('asset/images/noimage.png'),
+                        // image: NetworkImage(Config().baseUrlImage + categoryModel.link),
+                      ),
                     ),
                   ),
-                ),
-                const Text("Test"),
-              ],
+                  const Text("Test"),
+                ],
+              ),
             ),
-          ),
-        );
-      }),
+          );
+        }),
+      ),
     );
   }
 
@@ -160,7 +155,7 @@ class _CustScrollViewState extends State<CustScrollView> {
     return PreferredSize(
       preferredSize: const Size.fromHeight(kToolbarHeight + 40),
       child: Container(
-        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+        // padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         child: AppBar(
           title: TextField(
             style: const TextStyle(color: Colors.white),
@@ -173,9 +168,6 @@ class _CustScrollViewState extends State<CustScrollView> {
             onChanged: (value) {},
           ),
           backgroundColor: ColSys().primary,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(),
-          ),
         ),
       ),
     );

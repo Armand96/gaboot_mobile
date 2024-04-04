@@ -1,123 +1,101 @@
 import 'package:flutter/material.dart';
-import 'package:gaboot_mobile/ui_collection/button/button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gaboot_mobile/screen/home/homebase/bloc/home_bloc.dart';
+import 'package:gaboot_mobile/screen/home/homebase/filter_component.dart';
+import 'package:gaboot_mobile/screen/home/homebase/listprodpilihan_component.dart';
+import 'package:gaboot_mobile/screen/home/homebase/topbanner_component.dart';
+import 'package:gaboot_mobile/services/config.dart';
+import 'package:gaboot_mobile/ui_collection/color_system.dart';
 
 class HomeBaseScreen extends StatefulWidget {
-  const HomeBaseScreen({super.key});
+  final BuildContext cntx;
+  const HomeBaseScreen({super.key, required this.cntx});
 
   @override
   State<HomeBaseScreen> createState() => _HomeBaseScreenState();
 }
 
 class _HomeBaseScreenState extends State<HomeBaseScreen> {
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
+
+  HomeBloc? homeBloc;
+
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(5, 10, 5, 2),
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        // mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          topBanner(),
-          Flexible(child: filter(), flex: 0),
-          Flexible(child: listProduct()),
-        ],
-      ),
-    );
+  void initState() {
+    homeBloc = HomeBloc(context: widget.cntx);
+    homeBloc!.add(HomeInitEvent());
+    super.initState();
   }
 
-  filter() {
-    const String textFilter = "Filter";
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 15.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            child: Text(
-              textFilter,
-              textAlign: TextAlign.left,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+  @override
+  Widget build(BuildContext ctx) {
+    return BlocProvider(
+      create: (context) => HomeBloc(context: context),
+      child: RefreshIndicator(
+        key: _refreshIndicatorKey,
+        onRefresh: () async {
+          print(Config().baseUrl);
+          homeBloc!.add(HomeRefreshEvent());
+        },
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              floating: true,
+              flexibleSpace: appBar(),
+              expandedHeight: 70,
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Button(
-                enabled: true,
-                fullWidth: false,
-                text: "Harga",
-                isOutline: false,
-                funcs: () {},
+            SliverToBoxAdapter(
+              child: BlocBuilder<HomeBloc, HomeState>(
+                bloc: homeBloc,
+                builder: (context, state) {
+                  print(state.runtimeType);
+                  switch (state.runtimeType) {
+                    case HomeLoadingState:
+                      return SizedBox(height: MediaQuery.of(context).size.height / 2, child: const CircularProgressIndicator());
+                    case HomeLoadSuccessState:
+                      return const Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                            child: TopBannerComponent(imgPath: ""),
+                          ),
+                          FilterComponent(),
+                          ListProdPilihanComponent()
+                        ],
+                      );
+                    case HomeErrorState:
+                      return const Center(child: Text("Error"));
+                    default:
+                      return const Center(
+                        child: Text("No State Found"),
+                      );
+                  }
+                },
               ),
-              Button(
-                enabled: true,
-                fullWidth: false,
-                text: "Lokasi",
-                isOutline: false,
-                funcs: () {},
-              ),
-              Button(
-                enabled: true,
-                fullWidth: false,
-                text: "Lainnya",
-                isOutline: false,
-                funcs: () {},
-              ),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
-  listProduct() {
-    List<int> data = [1, 2, 3, 4, 5];
-    return GridView.count(
-      crossAxisCount: 2,
-      children: List.generate(data.length, (index) {
-        return Center(
-          child: GestureDetector(
-            onTap: () {
-              print('test click');
-            },
-            child: Column(
-              children: [
-                Container(
-                  height: 150,
-                  width: 150,
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('asset/images/noimage.png'),
-                      // image: NetworkImage(Config().baseUrlImage + categoryModel.link),
-                    ),
-                  ),
-                ),
-                const Text("Test"),
-              ],
             ),
-          ),
-        );
-      }),
-    );
-  }
-
-  topBanner() {
-    return Container(
-      height: MediaQuery.of(context).size.height / 4,
-      width: MediaQuery.of(context).size.width,
-      alignment: Alignment.center,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        image: DecorationImage(
-          fit: BoxFit.fill,
-          image: AssetImage('asset/images/noimage.png'),
-          // image: NetworkImage(Config().baseUrlImage + categoryModel.link),
+          ],
         ),
+      ),
+    );
+  }
+
+  /* APP BAR */
+  PreferredSizeWidget? appBar() {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(kToolbarHeight + 40),
+      child: AppBar(
+        title: TextField(
+          style: const TextStyle(color: Colors.white),
+          cursorColor: Colors.white,
+          decoration: const InputDecoration(
+            hintText: 'Cari barang yang kamu inginkan...',
+            hintStyle: TextStyle(color: Colors.white54),
+            border: InputBorder.none,
+          ),
+          onChanged: (value) {},
+        ),
+        backgroundColor: ColSys().primary,
       ),
     );
   }

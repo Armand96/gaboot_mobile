@@ -7,6 +7,7 @@ class API {
   Dio dio = Dio();
 
   Future<ResponseAPI<T>> getAPI<T>(String url, T Function(Object? json) fromJson) async {
+    // print(Config().baseUrl);
     try {
       print(Config().baseUrl + url);
       final response = await dio.get(Config().baseUrl + url);
