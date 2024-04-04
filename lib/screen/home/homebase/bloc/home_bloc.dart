@@ -25,8 +25,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     try {
       final resp = await ProductService().getProducts();
-      // final List<Product> products = resp.data!;
-      final List<Product> products = [Product(id: 1, name: "name", description: "description", price: 100, stock: 0, dimension: "dimension", weight: 20, weightUnit: "weightUnit", categoryId: 1)];
+      final List<Product> products = resp.data!;
+      // final List<Product> products = [Product(id: 1, name: "name", description: "description", price: 100, stock: 0, dimension: "dimension", weight: 20, weightUnit: "weightUnit", categoryId: 1)];
 
       // await Future.delayed(const Duration(seconds: 2));
       print("Loaded All Data");

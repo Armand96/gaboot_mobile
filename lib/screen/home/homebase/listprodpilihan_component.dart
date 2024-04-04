@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:gaboot_mobile/product/product_model.dart';
 
 class ListProdPilihanComponent extends StatelessWidget {
-  const ListProdPilihanComponent({super.key});
+  final List<Product> products;
+  const ListProdPilihanComponent({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
-    List<int> data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     return SizedBox(
       height: MediaQuery.of(context).size.height * .8,
       child: GridView.count(
         crossAxisCount: 2,
-        children: List.generate(data.length, (index) {
+        children: List.generate(products.length, (index) {
           return Center(
             child: GestureDetector(
               onTap: () {
@@ -31,7 +32,10 @@ class ListProdPilihanComponent extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Text("Test"),
+                  Text(
+                    products[index].name,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
                 ],
               ),
             ),

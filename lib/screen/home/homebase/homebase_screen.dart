@@ -52,14 +52,15 @@ class _HomeBaseScreenState extends State<HomeBaseScreen> {
                     case HomeLoadingState:
                       return SizedBox(height: MediaQuery.of(context).size.height / 2, child: const CircularProgressIndicator());
                     case HomeLoadSuccessState:
-                      return const Column(
+                    final succState = state as HomeLoadSuccessState;
+                      return Column(
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                             child: TopBannerComponent(imgPath: ""),
                           ),
-                          FilterComponent(),
-                          ListProdPilihanComponent()
+                          const FilterComponent(),
+                          ListProdPilihanComponent(products: succState.products)
                         ],
                       );
                     case HomeErrorState:
