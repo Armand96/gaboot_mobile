@@ -4,7 +4,6 @@ import 'package:gaboot_mobile/screen/home/homebase/bloc/home_bloc.dart';
 import 'package:gaboot_mobile/screen/home/homebase/filter_component.dart';
 import 'package:gaboot_mobile/screen/home/homebase/listprodpilihan_component.dart';
 import 'package:gaboot_mobile/screen/home/homebase/topbanner_component.dart';
-import 'package:gaboot_mobile/services/config.dart';
 import 'package:gaboot_mobile/ui_collection/color_system.dart';
 
 class HomeBaseScreen extends StatefulWidget {
@@ -35,7 +34,6 @@ class _HomeBaseScreenState extends State<HomeBaseScreen> {
       child: RefreshIndicator(
         key: _refreshIndicatorKey,
         onRefresh: () async {
-          print(Config().baseUrl);
           homeBloc!.add(HomeRefreshEvent());
         },
         child: CustomScrollView(
