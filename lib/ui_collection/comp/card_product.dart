@@ -18,6 +18,10 @@ class CardProduct extends StatelessWidget {
     String priceTxt = FormatText().numFormat(price, "Rp ", 0);
 
     return Card(
+      // elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisAlignment: MainAxisAlignment.start,
@@ -25,13 +29,13 @@ class CardProduct extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(
-              height: 200,
-              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.5,
+              width: MediaQuery.of(context).size.width * 0.5,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 image: DecorationImage(
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                   image: AssetImage(thumbnailImgPath),
                   // image: NetworkImage(Config().baseUrlImage + categoryModel.link),
                 ),

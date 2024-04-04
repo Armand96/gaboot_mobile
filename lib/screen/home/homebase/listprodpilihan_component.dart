@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gaboot_mobile/product/product_model.dart';
+import 'package:gaboot_mobile/ui_collection/comp/card_product.dart';
 
 class ListProdPilihanComponent extends StatelessWidget {
   final List<Product> products;
@@ -7,39 +8,26 @@ class ListProdPilihanComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const String thumbnailImgPath = 'asset/images/noimage.png';
     return SizedBox(
       height: MediaQuery.of(context).size.height * .8,
       child: GridView.count(
         crossAxisCount: 2,
         children: List.generate(products.length, (index) {
           return Center(
-            child: GestureDetector(
-              onTap: () {
-                print('test click');
-              },
-              child: Column(
-                children: [
-                  Container(
-                    height: 150,
-                    width: 150,
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage('asset/images/noimage.png'),
-                        // image: NetworkImage(Config().baseUrlImage + categoryModel.link),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    products[index].name,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                ],
+              child: GestureDetector(
+            onTap: () {
+              print('test click');
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CardProduct(
+                price: products[index].price,
+                rating: 4.5,
+                title: products[index].name,
               ),
             ),
-          );
+          ));
         }),
       ),
     );
