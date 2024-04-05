@@ -9,7 +9,8 @@ final class HomeLoadingState extends HomeState {}
 
 final class HomeLoadSuccessState extends HomeState {
   final List<Product> products;
-  HomeLoadSuccessState({required this.products});
+  final List<Category> categories;
+  HomeLoadSuccessState({required this.products, required this.categories});
 }
 
 final class HomeErrorState extends HomeState {}
