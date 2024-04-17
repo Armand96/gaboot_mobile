@@ -10,8 +10,8 @@ Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
-      imgPath: json['imgPath'] as String?,
-      imgThumbPath: json['imgThumbPath'] as String?,
+      imagePath: json['imagePath'] as String?,
+      thumbnailPath: json['thumbnailPath'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
@@ -20,8 +20,8 @@ Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
-      'imgPath': instance.imgPath,
-      'imgThumbPath': instance.imgThumbPath,
+      'imagePath': instance.imagePath,
+      'thumbnailPath': instance.thumbnailPath,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
     };

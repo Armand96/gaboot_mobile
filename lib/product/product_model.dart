@@ -1,3 +1,4 @@
+import 'package:gaboot_mobile/product/product_Image/product_image_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'product_model.g.dart';
@@ -13,6 +14,7 @@ class Product {
   double weight;
   String weightUnit;
   String categoryId;
+  List<ProductImage>? images;
   // int totalSales;
   // bool isActive;
   // DateTime createdAt;
@@ -28,6 +30,7 @@ class Product {
     required this.weight,
     required this.weightUnit,
     required this.categoryId,
+    this.images,
     // required this.totalSales,
     // required this.isActive,
     // required this.createdAt,

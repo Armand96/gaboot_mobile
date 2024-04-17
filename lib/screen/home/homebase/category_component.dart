@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gaboot_mobile/category/category_model.dart';
+import 'package:gaboot_mobile/services/config.dart';
 
 class HomebaseCategoryComponent extends StatelessWidget {
   final List<Category> categories;
@@ -30,12 +31,13 @@ class HomebaseCategoryComponent extends StatelessWidget {
                       height: 50,
                       width: 50,
                       alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(10)),
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('asset/images/noimage.png'),
-                          // image: NetworkImage(Config().baseUrlImage + categoryModel.link),
+                          image: NetworkImage(Config().baseUrlImage + categories[index].thumbnailPath!)
+                          // image: AssetImage('asset/images/noimage.png'),
+                          // image: Image.network(Config().baseUrlImage + categoryModel.link),
                         ),
                       ),
                     ),

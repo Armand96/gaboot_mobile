@@ -11,8 +11,9 @@ class ListProdPilihanComponent extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.of(context).size.height * .78,
       child: GridView.count(
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
+        childAspectRatio: 0.72,
+        mainAxisSpacing: 5,
+        crossAxisSpacing: 0,
         padding: const EdgeInsets.symmetric(horizontal: 5),
         crossAxisCount: 2,
         children: List.generate(products.length, (index) {
@@ -22,9 +23,7 @@ class ListProdPilihanComponent extends StatelessWidget {
               print('test click');
             },
             child: CardProduct(
-              price: products[index].price,
-              rating: 4.5,
-              title: products[index].name,
+              product: products[index],
             ),
           ));
         }),

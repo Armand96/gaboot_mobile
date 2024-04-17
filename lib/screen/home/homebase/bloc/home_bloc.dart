@@ -27,7 +27,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     try {
       /* get product pilihan */
-      final resp = await ProductService().getProducts();
+      final resp = await ProductService().getProductsWithImage();
       final List<Product> products = resp.data!;
 
       /* get categories */

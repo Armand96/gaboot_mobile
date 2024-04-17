@@ -11,6 +11,12 @@ class ProductService {
     return response;
   }
 
+  Future<ResponseAPI<Product>> getProductsWithImage() async {
+    final response = await API().getAPI<Product>('$url/product-image',
+        (json) => Product.fromJson(json as Map<String, dynamic>));
+    return response;
+  }
+
   Future<ResponseAPI<Product>> getProductByCategory(String categoryId) async {
     final response = await API().getAPI<Product>('$url?categoryId=$categoryId',
         (json) => Product.fromJson(json as Map<String, dynamic>));

@@ -7,8 +7,8 @@ class Category {
   String id;
   String name;
   String description;
-  String? imgPath;
-  String? imgThumbPath;
+  String? imagePath;
+  String? thumbnailPath;
   DateTime createdAt;
   DateTime updatedAt;
 
@@ -16,8 +16,8 @@ class Category {
     required this.id,
     required this.name,
     required this.description,
-    this.imgPath,
-    this.imgThumbPath,
+    this.imagePath,
+    this.thumbnailPath,
     required this.createdAt,
     required this.updatedAt,
   });
