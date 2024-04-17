@@ -35,7 +35,7 @@ class CategoryInitialEvent extends CategoryEvent {}
 class CategoryLoadEvent extends CategoryEvent {}
 
 class CategoryClickNavigateEvent extends CategoryEvent {
-  final int categoryId ;
+  final String categoryId ;
   CategoryClickNavigateEvent({required this.categoryId});
 }
 /* ================================== END OF EVENT ================================== */

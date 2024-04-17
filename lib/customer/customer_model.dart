@@ -4,7 +4,7 @@ part 'customer_model.g.dart';
 
 @JsonSerializable()
 class Customer {
-  int id;
+  String id;
   String firstname;
   String lastname;
   String username;

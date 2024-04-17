@@ -7,9 +7,9 @@ part of 'cart_model.dart';
 // **************************************************************************
 
 Cart _$CartFromJson(Map<String, dynamic> json) => Cart(
-      id: json['id'] as int,
-      customerId: json['customerId'] as int,
-      productId: json['productId'] as int,
+      id: json['id'] as String,
+      customerId: json['customerId'] as String,
+      productId: json['productId'] as String,
       price: (json['price'] as num).toDouble(),
       quantity: json['quantity'] as int,
       createdAt: DateTime.parse(json['createdAt'] as String),

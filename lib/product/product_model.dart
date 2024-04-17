@@ -4,7 +4,7 @@ part 'product_model.g.dart';
 
 @JsonSerializable()
 class Product {
-  int id;
+  String id;
   String name;
   String description;
   double price;
@@ -12,7 +12,7 @@ class Product {
   String dimension;
   double weight;
   String weightUnit;
-  int categoryId;
+  String categoryId;
   // int totalSales;
   // bool isActive;
   // DateTime createdAt;

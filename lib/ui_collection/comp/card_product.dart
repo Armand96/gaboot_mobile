@@ -17,6 +17,10 @@ class CardProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     String priceTxt = FormatText().numFormat(price, "Rp ", 0);
 
+    return buildCard(context);
+  }
+
+  Widget carde(String priceTxt, BuildContext context) {
     return Card(
       // elevation: 2,
       shape: RoundedRectangleBorder(
@@ -66,6 +70,35 @@ class CardProduct extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget buildCard(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.all(7),
+      color: Colors.grey[300],
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: SizedBox(
+        height: 200,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          children: [
+            Container(
+              height: 100,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(thumbnailImgPath),
+                  // image: NetworkImage(Config().baseUrlImage + categoryModel.link),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

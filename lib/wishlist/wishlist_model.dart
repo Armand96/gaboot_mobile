@@ -4,7 +4,7 @@ part 'wishlist_model.g.dart';
 
 @JsonSerializable()
 class Wishlist {
-  int id;
+  String id;
   int productId;
   String category;
   DateTime createdAt;

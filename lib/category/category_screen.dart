@@ -26,7 +26,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     categoryBloc!.add(CategoryInitialEvent());
   }
 
-  void productList(int categoryId) {
+  void productList(String categoryId) {
     print("button pressed");
     categoryBloc!.add(CategoryClickNavigateEvent(categoryId: categoryId));
   }

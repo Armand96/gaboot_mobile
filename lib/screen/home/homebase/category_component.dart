@@ -8,44 +8,43 @@ class HomebaseCategoryComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // const String thumbnailImgPath = 'asset/images/noimage.png';
-    return gridView(context);
+    // return gridView(context);
+    return lvRow(context);
   }
 
-  gridView(BuildContext context) {
-    double height = categories.length > 5
-        ? MediaQuery.of(context).size.height * .2
-        : MediaQuery.of(context).size.height * .12;
-    return SizedBox(
-      height: height,
-      width: MediaQuery.of(context).size.width,
-      child: GridView.count(
-        crossAxisCount: 5,
+  lvRow(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Row(
         children: List.generate(categories.length, (index) {
-          return Center(
-            child: GestureDetector(
-              onTap: () {
-                print(categories[index].toJson());
-              },
-              child: Column(
-                children: [
-                  Container(
-                    height: 50,
-                    width: 50,
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage('asset/images/noimage.png'),
-                        // image: NetworkImage(Config().baseUrlImage + categoryModel.link),
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Center(
+              child: GestureDetector(
+                onTap: () {
+                  print(categories[index].toJson());
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 50,
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('asset/images/noimage.png'),
+                          // image: NetworkImage(Config().baseUrlImage + categoryModel.link),
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    categories[index].name,
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ],
+                    Text(
+                      categories[index].name,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -53,4 +52,5 @@ class HomebaseCategoryComponent extends StatelessWidget {
       ),
     );
   }
+  
 }

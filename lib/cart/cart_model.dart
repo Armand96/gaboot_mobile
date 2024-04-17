@@ -4,9 +4,9 @@ part 'cart_model.g.dart';
 
 @JsonSerializable()
 class Cart {
-  int id;
-  int customerId;
-  int productId;
+  String id;
+  String customerId;
+  String productId;
   double price;
   int quantity;
   DateTime createdAt;

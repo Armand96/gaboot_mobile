@@ -4,7 +4,7 @@ part 'order_model.g.dart';
 
 @JsonSerializable()
 class Order {
-  int id;
+  String id;
   String name;
   int cartId;
   int customerId;

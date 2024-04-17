@@ -8,10 +8,12 @@ class ListProdPilihanComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String thumbnailImgPath = 'asset/images/noimage.png';
     return SizedBox(
-      height: MediaQuery.of(context).size.height * .8,
+      height: MediaQuery.of(context).size.height * .78,
       child: GridView.count(
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         crossAxisCount: 2,
         children: List.generate(products.length, (index) {
           return Center(
@@ -19,13 +21,10 @@ class ListProdPilihanComponent extends StatelessWidget {
             onTap: () {
               print('test click');
             },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CardProduct(
-                price: products[index].price,
-                rating: 4.5,
-                title: products[index].name,
-              ),
+            child: CardProduct(
+              price: products[index].price,
+              rating: 4.5,
+              title: products[index].name,
             ),
           ));
         }),

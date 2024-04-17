@@ -34,7 +34,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final respCat = await CategoryService().getCategories();
       final List<Category> categories = respCat.data!;
       // final List<Product> products = [Product(id: 1, name: "name", description: "description", price: 100, stock: 0, dimension: "dimension", weight: 20, weightUnit: "weightUnit", categoryId: 1)];
-
+      // final List<Category> categories = [Category(id: 1, name: "Cat", description: "description", createdAt: DateTime.now(), updatedAt: DateTime.now())];
       // await Future.delayed(const Duration(seconds: 2));
       print("Loaded All Data");
       emit(HomeLoadSuccessState(products: products, categories: categories));

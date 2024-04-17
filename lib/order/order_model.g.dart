@@ -7,7 +7,7 @@ part of 'order_model.dart';
 // **************************************************************************
 
 Order _$OrderFromJson(Map<String, dynamic> json) => Order(
-      id: json['id'] as int,
+      id: json['id'] as String,
       name: json['name'] as String,
       cartId: json['cartId'] as int,
       customerId: json['customerId'] as int,

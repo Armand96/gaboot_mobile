@@ -53,7 +53,7 @@ class _HomeBaseScreenState extends State<HomeBaseScreen> {
                     case HomeLoadingState:
                       return SizedBox(height: MediaQuery.of(context).size.height / 2, child: const CircularProgressIndicator());
                     case HomeLoadSuccessState:
-                    final succState = state as HomeLoadSuccessState;
+                      final succState = state as HomeLoadSuccessState;
                       return Column(
                         children: [
                           const Padding(

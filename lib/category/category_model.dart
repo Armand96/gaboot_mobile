@@ -4,7 +4,7 @@ part 'category_model.g.dart';
 
 @JsonSerializable()
 class Category {
-  int id;
+  String id;
   String name;
   String description;
   String? imgPath;
