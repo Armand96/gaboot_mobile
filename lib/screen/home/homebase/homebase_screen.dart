@@ -56,9 +56,9 @@ class _HomeBaseScreenState extends State<HomeBaseScreen> {
                       final succState = state as HomeLoadSuccessState;
                       return Column(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                            child: TopBannerComponent(imgPath: ""),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+                            child: TopBannerComponent(banners: succState.banners),
                           ),
                           HomebaseCategoryComponent(categories: succState.categories),
                           const FilterComponent(),

@@ -10,7 +10,8 @@ final class HomeLoadingState extends HomeState {}
 final class HomeLoadSuccessState extends HomeState {
   final List<Product> products;
   final List<Category> categories;
-  HomeLoadSuccessState({required this.products, required this.categories});
+  final List<BannerM> banners;
+  HomeLoadSuccessState({required this.products, required this.categories, required this.banners});
 }
 
 final class HomeErrorState extends HomeState {}
